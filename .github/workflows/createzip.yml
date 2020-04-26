@@ -1,6 +1,9 @@
 name: Greeting from Mona
 
+# This workflow is triggered on pushes to /files directory
 on: push
+  paths: 
+    - 'files/**'
 
 jobs:
   my-job:
