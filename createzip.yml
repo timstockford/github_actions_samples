@@ -1,0 +1,28 @@
+name: create zip release
+# This workflow is triggered on pushes to /files directory
+on:
+  push:
+    paths:
+      - 'files/**'
+
+jobs:
+  build:
+  # Job Name
+  name: create artifact
+  
+  # windows-latest or windows-2019
+  # ubuntu-latest or ubuntu-18.04
+  # This job runs on latest linux
+  runs-on: ubuntu-latest
+  steps:
+    # Step 1
+     - name: Step1 Download Repo
+       uses: actions/checkout@v2
+
+    # Step 2 - Multiline shell script
+     - name: Step2 Print Hello world
+       run: |
+       pwd
+       ls
+       ll
+       echo "Hello World"
