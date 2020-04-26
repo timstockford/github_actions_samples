@@ -21,8 +21,6 @@ jobs:
 
     # Step 2 - Multiline shell script
      - name: Step2 Print Hello world
-       run: |
-       pwd
-       ls
-       ll
-       echo "Hello World"
+       env: ECHO_MESSAGE
+       run: echo $ECHO_MESSAGE
+       
