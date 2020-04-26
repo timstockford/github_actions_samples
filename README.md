@@ -11,7 +11,7 @@ Templates and samples yml located in repo root
 [/files](./files) contains test file structure to be compressed & zipped
 
 ## Multi-job Sample
-Sample git actions template with multiple jobs and steps.
+[sample_multijob.yml](./sample_multijob.yml) - Sample git actions template with multiple jobs and steps.
 
 ---
 
