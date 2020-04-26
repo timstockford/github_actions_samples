@@ -6,9 +6,9 @@ on:
       - 'files/**'
 
 jobs:
-  build:
+  jobone:
   # Job Name
-  name: create artifact
+#  name: jobname
   
   # windows-latest or windows-2019
   # ubuntu-latest or ubuntu-18.04
