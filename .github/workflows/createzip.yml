@@ -1,4 +1,4 @@
-name: Greeting from Mona
+name: Example multi-job multi-step
 
 # This workflow is triggered on pushes to /files directory
 on:
@@ -7,7 +7,8 @@ on:
 
 
 jobs:
-  my-job:
+ # Job 1
+ my-job:
     name: My Job
     runs-on: ubuntu-latest
     steps:
@@ -20,3 +21,16 @@ jobs:
       run: |
         echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
         
+ # Job 2
+ job2:
+   needs: [my-job]
+   name: Second job
+   runs-on: ubuntu-latest
+   steps:
+       # Step 1
+     - name: Job 2 Step 1
+       run: echo pwd
+       # Step 2
+     - name: Job2 Step 2
+       run: ls -al
+       
