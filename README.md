@@ -22,7 +22,7 @@ Azure Image Builder to download an (automatically maintained) package of scripts
 
 ### Planned Features:
  - [ ] When /files folder updated create artifact files.zip
- - [ ] Test zip file extraction works
+ - [ ] Test zip file extraction works, using dependancy on build job
  - [ ] Upload zip file to releases as new version
  - [ ] Download zip file from Releases url with latest
  - [ ] Add badge to RADME.md for workflow status
