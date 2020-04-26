@@ -10,6 +10,8 @@ jobs:
  # Job 1
  my-job:
     name: My Job
+    # This job runs on latest linux
+    # Other options: windows-latest or windows-2019 ; ubuntu-latest or ubuntu-18.04
     runs-on: ubuntu-latest
     steps:
     - name: Print a greeting
