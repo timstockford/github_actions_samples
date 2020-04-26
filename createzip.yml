@@ -1,28 +1,40 @@
-name: create zip release
+name: Create zip release
+
 # This workflow is triggered on pushes to /files directory
 on:
   push:
-    paths:
-      - 'files/**'
+    paths: 'files/**'
+
 
 jobs:
-  build:
-  # Job Name
-  name: create artifact
-  
-  # windows-latest or windows-2019
-  # ubuntu-latest or ubuntu-18.04
-  # This job runs on latest linux
-  runs-on: ubuntu-latest
-  steps:
-    # Step 1
-     - name: Step1 Download Repo
-       uses: actions/checkout@v2
-
-    # Step 2 - Multiline shell script
-     - name: Step2 Print Hello world
-       run: |
-       pwd
-       ls
-       ll
-       echo "Hello World"
+ # Job 1
+ build:
+    name: build
+    # This job runs on latest linux
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      env:
+        MY_VAR: Hi there! My name is
+        FIRST_NAME: Mona
+        MIDDLE_NAME: The
+        LAST_NAME: Octocat
+      run: |
+        echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+        
+ # Job 2
+ job2:
+   needs: [my-job]
+   name: Second job
+   runs-on: ubuntu-latest
+   steps:
+       # Step 1
+     - name: Job 2 Step 1
+       uses: actions/checkout@v2.1.0
+       # Step 2
+     - name: Job2 Step 2
+       run: echo $pwd
+       # Step 3
+     - name: Job2 Step 3
+       run: ls -al
+       
