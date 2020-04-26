@@ -8,7 +8,7 @@ Active workflow files located in: [.github/workflows](.github/workflows)
 
 Templates and samples yml located in repo root
 
-[/files](./files) contains test file structure to be compressed & zipped
+[sample_multijob.yml](./sample_multijob.yml) contains test file structure to be compressed & zipped
 
 ## Multi-job Sample
 Sample git actions template with multiple jobs and steps.
