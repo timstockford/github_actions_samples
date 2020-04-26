@@ -29,8 +29,11 @@ jobs:
    steps:
        # Step 1
      - name: Job 2 Step 1
-       run: echo pwd
+       uses: actions/checkout@v2.1.0
        # Step 2
      - name: Job2 Step 2
+       run: echo $pwd
+       # Step 3
+     - name: Job2 Step 3
        run: ls -al
        
