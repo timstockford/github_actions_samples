@@ -18,7 +18,7 @@ jobs:
     - run: dir
       shell: cmd
     - name: Display Powershell Version
-      run: '@PSVersionTable'
+      run: $PSVersionTable
       shell: powershell
     - name: Create ZIP
       run: '. CreateZipFile.ps1'
