@@ -26,4 +26,23 @@ jobs:
     - run: dir
       shell: cmd
 
-# Job 2
+ # Job 2
+ test:
+   needs: [build]
+   name: test zip file
+   runs-on: windows-latest
+   defaults:
+     run:
+       shell: powershell
+   env:
+     FILENAME: files.zip
+     EXTRACTPATH: ./extractzip
+   steps:
+     - run: dir
+       shell: cmd
+     - name: Check zip file exists
+       run: If(Test-path $FILENAME) {write-host "Zip file found"}
+     - name: Test file extraction
+       run: Expand-Archive -Path $FILENAME -DestinationPath $EXTRACTPATH
+     - name: tree listing for log verification
+       run: Get-ChildItem $EXTRACTPATH
