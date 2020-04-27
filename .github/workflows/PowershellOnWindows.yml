@@ -23,4 +23,5 @@ jobs:
     - name: Create ZIP
       run: '. .\CreateZipFile.ps1'
       shell: powershell
-      
+    - run: dir
+      shell: cmd      
