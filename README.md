@@ -24,7 +24,7 @@ When files are updated in a particular repo folder, automatically zip the folder
 Azure Image Builder to download an (automatically maintained) package of scripts during customisation phase.  
 
 ### Planned Features:
- - [ ] When /files folder updated create artifact files.zip
+ - [ ] When /files folder updated create artifact files.zip - (create_zip_artifact.yml)[./create_zip_artifact.yml)
  - [ ] Test zip file extraction works, using dependancy on build job
  - [ ] Upload zip file to releases as new version
  - [ ] Download zip file from Releases url with latest
