@@ -12,21 +12,26 @@ jobs:
     name: build and upload release
     # This job runs on latest Windows container
     runs-on: windows-latest
+    # Default shell language for job
+    defaults:
+      run:
+        shell: powershell
+    # Environment variables for job
+    env:
+      FILENAME: files.zip
+      EXTRACTPATH: ./extractzip
+    # Steps definition
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2.1.0
-    - run: dir
-      shell: cmd
+    - run: Get-ChildItem
     - name: Display Powershell Version
       run: $PSVersionTable
-      shell: powershell
     - name: Create ZIP
       run: '. .\CreateZipFile.ps1'
-      shell: powershell
+    - run: Get-ChildItem
     - name: Check zip file exists
-      run: If(Test-path $FILENAME) {write-host "Zip file found"}      
-    - run: dir
-      shell: cmd
+      run: If(Test-path $FILENAME) {write-host "Zip file found"}
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
