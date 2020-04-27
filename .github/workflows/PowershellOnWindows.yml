@@ -10,7 +10,7 @@ jobs:
  # Job 1
  build:
     name: build
-    # This job runs on latest linux
+    # This job runs on latest Windows container
     runs-on: windows-latest
     steps:
     - name: Checkout Repo
