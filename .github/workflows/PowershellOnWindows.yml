@@ -21,6 +21,6 @@ jobs:
       run: $PSVersionTable
       shell: powershell
     - name: Create ZIP
-      run: '. CreateZipFile.ps1'
+      run: '. .\CreateZipFile.ps1'
       shell: powershell
       
