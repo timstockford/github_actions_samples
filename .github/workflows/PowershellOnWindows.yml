@@ -1,0 +1,26 @@
+name: Create zip release
+
+# This workflow is triggered on pushes to /files directory
+on:
+  push:
+    paths: 'files/**'
+
+
+jobs:
+ # Job 1
+ build:
+    name: build
+    # This job runs on latest linux
+    runs-on: windows-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2.1.0
+    - run: dir
+      shell: cmd
+    - name: Display Powershell Version
+      run: '@PSVersionTable'
+      shell: powershell
+    - name: Create ZIP
+      run: '. CreateZipFile.ps1'
+      shell: powershell
+      
