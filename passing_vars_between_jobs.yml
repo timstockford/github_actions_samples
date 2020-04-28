@@ -20,6 +20,7 @@ jobs:
     env:
       FILENAME: files.zip
       EXTRACTPATH: ./extractzip
+    # Job level defined outputs (accessible to dependant child jobs)
     outputs:
       RELEASE_ASSETID: ${{ steps.release_asset.outputs.id }}
       RELEASE_ASSETURL: ${{ steps.release_asset.outputs.browser_download_url }}
