@@ -20,6 +20,9 @@ jobs:
     env:
       FILENAME: files.zip
       EXTRACTPATH: ./extractzip
+    outputs:
+      RELEASE_ASSETID: ${{ steps.release_asset.outputs.id }}
+      RELEASE_ASSETURL: ${{ steps.release_asset.outputs.browser_download_url }}
     # Steps definition
     steps:
     - name: Checkout Repo
@@ -64,8 +67,8 @@ jobs:
      run:
        shell: powershell
    env:
-     ASSETID: ${{ needs.build.outputs.id }}
-     DNLDURL: ${{ needs.build.outputs.browser_download_url }}
+     ASSETID: ${{ needs.build.outputs.RELEASE_ASSETID }}
+     DNLDURL: ${{ needs.build.outputs.RELEASE_ASSETURL }}
    steps:
      - run: echo AssetID = %ASSETID%
        shell: cmd
