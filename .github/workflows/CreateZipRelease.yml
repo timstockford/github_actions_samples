@@ -31,7 +31,7 @@ jobs:
       run: '. .\CreateZipFile.ps1'
     - run: Get-ChildItem
     - name: Check zip file exists
-      run: If(Test-path $FILENAME) {write-host "Zip file found"}
+      run: If(Test-path $env:FILENAME) {write-host "Zip file found"}
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
