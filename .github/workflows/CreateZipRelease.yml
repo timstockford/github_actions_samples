@@ -64,17 +64,12 @@ jobs:
      run:
        shell: powershell
    env:
-     FILENAME: files.zip
-     EXTRACTPATH: ./extractzip
+     ASSETID: ${{ jobs.build.steps.create_release.outputs.id }}
+     DNLDURL: ${{ jobs.build.steps.create_release.outputs.browser_download_url }}
    steps:
-     - run: dir
+     - run: echo AssetID = %ASSETID%
        shell: cmd
-     - name: Check zip file exists
-       run: If(Test-path $FILENAME) {write-host "Zip file found"}
-     - name: Test file extraction
-       run: Expand-Archive -Path $FILENAME -DestinationPath $EXTRACTPATH
-     - name: tree listing for log verification
-       run: Get-ChildItem $EXTRACTPATH
+     - run: write-host $env:DNLDURL
 
  # Job 3
 # release:
