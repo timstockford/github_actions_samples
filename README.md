@@ -1,5 +1,5 @@
-# github_actions_samples
-Samples for using Github actions and workflow
+# github_actions_templates
+Samples/templates for using Github actions and workflow
 
 ---
 
