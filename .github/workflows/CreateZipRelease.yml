@@ -64,8 +64,8 @@ jobs:
      run:
        shell: powershell
    env:
-     ASSETID: ${{ steps.release_asset.outputs.id }}
-     DNLDURL: ${{ steps.release_asset.outputs.browser_download_url }}
+     ASSETID: ${{ needs.build.outputs.id }}
+     DNLDURL: ${{ needs.build.outputs.browser_download_url }}
    steps:
      - run: echo AssetID = %ASSETID%
        shell: cmd
