@@ -17,9 +17,10 @@ jobs:
       run:
         shell: powershell
     # Environment variables for job
-    env:
-      FILENAME: files.zip
-      EXTRACTPATH: ./extractzip
+    #TODO Parametrise ZIP FILENAME 
+    #env:
+      # FILENAME: files.zip
+      # EXTRACTPATH: ./extractzip
     # Job level defined outputs (accessible to dependant child jobs)
     outputs:
       RELEASE_ASSETID: ${{ steps.release_asset.outputs.id }}
@@ -54,7 +55,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. 
         asset_path: ./files.zip
         asset_name: myfiles.zip
         asset_content_type: application/zip
@@ -62,7 +63,7 @@ jobs:
  # Job 2
  test:
    needs: [build]
-   name: test zip file
+   name: test zip file extraction
    runs-on: windows-latest
    defaults:
      run:
@@ -71,9 +72,13 @@ jobs:
      ASSETID: ${{ needs.build.outputs.RELEASE_ASSETID }}
      DNLDURL: ${{ needs.build.outputs.RELEASE_ASSETURL }}
    steps:
-     - run: echo AssetID = %ASSETID%
-       shell: cmd
      - run: write-host $env:DNLDURL
+     - run: curl -L %DNLDURL% -o myFiles.zip
+       shell: cmd
+     - run: |
+         Expand-Archive -Path ./myFiles.zip -DestinationPath .\ExpandedZip
+     - run: |
+         Get-ChildItem -Recurse .\ExpandedZip
 
  # Job 3
 # release:
