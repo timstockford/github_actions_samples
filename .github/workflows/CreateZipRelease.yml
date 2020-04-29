@@ -72,9 +72,11 @@ jobs:
    env:
      ASSETID: ${{ needs.build.outputs.RELEASE_ASSETID }}
      DNLDURL: ${{ needs.build.outputs.RELEASE_ASSETURL }}
+     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
-     - run: write-host $env:DNLDURL
-     - run: curl -L %DNLDURL% -o myFiles.zip
+     - run: echo %DNLDURL%?access_token=%GITHUB_TOKEN%
+       shell: cmd
+     - run: curl -L %DNLDURL%?access_token=%GITHUB_TOKEN% -o myFiles.zip
        shell: cmd
      - run: type myFiles.zip
      - run: |
