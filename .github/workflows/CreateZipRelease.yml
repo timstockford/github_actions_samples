@@ -18,9 +18,9 @@ jobs:
         shell: powershell
     # Environment variables for job
     #TODO Parametrise ZIP FILENAME 
-    #env:
-      # FILENAME: files.zip
-      # EXTRACTPATH: ./extractzip
+    env:
+       FILENAME: files.zip
+       EXTRACTPATH: ./extractzip
     # Job level defined outputs (accessible to dependant child jobs)
     outputs:
       RELEASE_ASSETID: ${{ steps.release_asset.outputs.id }}
