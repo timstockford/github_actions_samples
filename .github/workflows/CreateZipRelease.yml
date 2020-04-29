@@ -76,6 +76,7 @@ jobs:
      - run: write-host $env:DNLDURL
      - run: curl -L %DNLDURL% -o myFiles.zip
        shell: cmd
+     - run: type myFiles.zip
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
      - run: |
