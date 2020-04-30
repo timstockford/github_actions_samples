@@ -60,7 +60,9 @@ jobs:
         asset_path: ./files.zip
         asset_name: myfiles.zip
         asset_content_type: application/zip
-    - run: echo "ASSETID IS ${{ steps.release_asset.outputs.id }}"
+    - run: |
+        echo "ASSETID IS ${{ steps.release_asset.outputs.id }}"
+        echo "ASSETID IS ${{ steps.release_asset.outputs.browser_download_url }}"
 
  # Job 2
  test:
