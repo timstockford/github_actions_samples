@@ -74,13 +74,13 @@ jobs:
      DNLDURL: ${{ needs.build.outputs.RELEASE_ASSETURL }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
+     - run: Get-ChildItem
      - run: echo %DNLDURL%
        shell: cmd
      - run: |
-         echo Authorization: token %GITHUB_TOKEN%
+         echo "Authorization: token "$env:GITHUB_TOKEN
      - run: |
-         curl -H Authorization: token %GITHUB_TOKEN% -L %DNLDURL% -o myFiles.zip
-       shell: cmd
+         curl.exe -H "Authorization: token "$env:GITHUB_TOKEN -L $env:DNLDURL -o myFiles.zip
      - run: type myFiles.zip
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
