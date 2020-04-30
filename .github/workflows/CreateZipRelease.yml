@@ -76,9 +76,10 @@ jobs:
    steps:
      - run: echo %DNLDURL%
        shell: cmd
-     - run: echo "Authorization::' token %GITHUB_TOKEN%"
-     - run: echo 'Authorization::'' token %GITHUB_TOKEN%'
-     - run: curl -H 'Authorization::'' token %GITHUB_TOKEN%' -L %DNLDURL% -o myFiles.zip
+     - run: |
+         echo Authorization: token %GITHUB_TOKEN%
+     - run: |
+         curl -H Authorization: token %GITHUB_TOKEN% -L %DNLDURL% -o myFiles.zip
        shell: cmd
      - run: type myFiles.zip
      - run: |
