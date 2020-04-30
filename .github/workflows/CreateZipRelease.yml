@@ -74,9 +74,9 @@ jobs:
      DNLDURL: ${{ needs.build.outputs.RELEASE_ASSETURL }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
-     - run: echo %DNLDURL%?access_token=%GITHUB_TOKEN%
+     - run: echo %DNLDURL%
        shell: cmd
-     - run: curl -L %DNLDURL%?access_token=%GITHUB_TOKEN% -o myFiles.zip
+     - run: curl -H 'Authorization: token %GITHUB_TOKEN%' -L %DNLDURL% -o myFiles.zip
        shell: cmd
      - run: type myFiles.zip
      - run: |
