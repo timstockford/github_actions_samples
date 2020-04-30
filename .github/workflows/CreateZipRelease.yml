@@ -52,7 +52,7 @@ jobs:
         prerelease: false
     - name: Upload Release Asset
       id: release_asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -61,8 +61,8 @@ jobs:
         asset_name: myfiles.zip
         asset_content_type: application/zip
     - run: |
-        echo "ASSETID IS ${{ steps.release_asset.outputs.id }}"
-        echo "ASSETID IS ${{ steps.release_asset.outputs.browser_download_url }}"
+        echo "ASSET_ID IS ${{ steps.release_asset.outputs.id }}"
+        echo "ASSET_BROWSER_DOWNLOAD_URL IS ${{ steps.release_asset.outputs.browser_download_url }}"
 
  # Job 2
  test:
