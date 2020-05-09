@@ -81,6 +81,8 @@ jobs:
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
      - run: |
+         $RELEASEID = $env:RELEASEID
+         $REPO = $env:REPO
          echo "RELEASEID: $RELEASEID"
          echo "REPO: $REPO"
          $RELEASESURL = "https://api.github.com/repos/$REPO/releases/$RELEASEID"
