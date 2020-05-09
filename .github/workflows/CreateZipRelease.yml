@@ -103,8 +103,8 @@ jobs:
          echo "$ASSETURL"
          curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                   --header 'Accept: application/octet-stream' `
-             --output $ASSETNAME `
-             --location $ASSETURL
+                  --output $ASSETNAME `
+                  --location $ASSETURL
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
      - run: |
