@@ -81,8 +81,7 @@ jobs:
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      ASSETURL: ${{ steps.get_asseturl.outputs.ASSETURL }}
    steps:
-     - id: get_asseturl
-       run: |
+     - run: |
          $RELEASEID = $env:RELEASEID
          $REPO = $env:REPO
          $GITHUB_TOKEN = $env:GITHUB_TOKEN
@@ -93,7 +92,7 @@ jobs:
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/vnd.github.v3' `
                            --location $RELEASESURL
-         echo "curl output"
+         echo "Release curl output"
          echo "$CurlOutput"
          $objReleases = $curloutput |ConvertFrom-Json
          echo "GH API Releases JSON" 
@@ -103,15 +102,12 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
-         echo "::set-output name=ASSETURL::$ASSETURL"
-         
-     - id: get_releaseasset
-       run: |
-         echo "AssetURL: $env:ASSETURL"
-         curl.exe --header "Authorization: token $GITHUB_TOKEN" `
-                  --header 'Accept: application/octet-stream' `
-                  --output $ASSETNAME `
-                  --location $ASSETURL
+         $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
+                           --header 'Accept: application/octet-stream' `
+                           --location $ASSETURL `
+                           --output $ASSETNAME
+         echo "asset curl output"
+         echo "$CurlOutput" 
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
      - run: |
