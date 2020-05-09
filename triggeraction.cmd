@@ -1,4 +1,9 @@
-set /p TAGTEXT=Enter Tag: 
+IF "%1"=="" (
+    set /p TAGTEXT=Enter Tag: 
+) else (
+    set TAGTEXT=%1
+)
+
 git pull --tags origin master
 echo %DATE%-%TIME% >>./files/file.txt
 git add ./files/file.txt
