@@ -96,6 +96,7 @@ jobs:
          $objReleases = $curloutput |ConvertFrom-Json
          echo "GH API Releases JSON" 
          echo $objReleases
+     - run: |
          $ASSETID = $objReleases.assets[0].id
          $ASSETNAME = $objReleases.assets[0].name
          $ASSETURL = $objReleases.assets[0].url
