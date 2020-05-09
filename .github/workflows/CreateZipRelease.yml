@@ -83,6 +83,7 @@ jobs:
      - run: |
          $RELEASEID = $env:RELEASEID
          $REPO = $env:REPO
+         $GITHUB_TOKEN = $env:GITHUB_TOKEN
          echo "RELEASEID: $RELEASEID"
          echo "REPO: $REPO"
          $RELEASESURL = "https://api.github.com/repos/$REPO/releases/$RELEASEID"
@@ -90,6 +91,8 @@ jobs:
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/vnd.github.v3' `
                            --location $RELEASESURL
+         echo "curl output"
+         echo "$CurlOutput"
          $objReleases = $curloutput |ConvertFrom-Json
          echo "GH API Releases JSON" 
          echo $objReleases
@@ -99,7 +102,7 @@ jobs:
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
          curl.exe --header "Authorization: token $GITHUB_TOKEN" `
-             --header 'Accept: application/octet-stream' `
+                  --header 'Accept: application/octet-stream' `
              --output $ASSETNAME `
              --location $ASSETURL
      - run: |
