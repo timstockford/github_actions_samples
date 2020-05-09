@@ -81,6 +81,8 @@ jobs:
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
      - run: |
+         echo "RELEASEID: $RELEASEID"
+         echo "REPO: $REPO"
          $RELEASESURL = "https://api.github.com/repos/$REPO/releases/$RELEASEID"
          echo "RELEASESURL: $RELEASESURL"
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
