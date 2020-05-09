@@ -1,5 +1,5 @@
 
-$TOKEN="937f5ef7da0caccb9c65bb0d8d9975ffc3ec0ccd"
+# SET $TOKEN for PAT
 $OWNER="timstockford"
 $REPO="github_actions_templates"
 $ASSETID="20289832"
@@ -16,7 +16,7 @@ $CurlOutput = curl.exe --header "Authorization: token $TOKEN" `
 
 $objReleases = $curloutput |ConvertFrom-Json
 
-
+$CurlOutput |Out-File -FilePath .\releases.json -Force
 
 <#
 curl.exe --header "Authorization: token $TOKEN" `
