@@ -1,5 +1,5 @@
 
-# SET $TOKEN for PAT
+# SET $TOKEN for PAT in Powershell session BEFORE RUNNING
 $OWNER="timstockford"
 $REPO="github_actions_templates"
 $ASSETID="20289832"
