@@ -77,16 +77,15 @@ jobs:
        shell: powershell
    env:
      RELEASEID: ${{ needs.build.outputs.RELEASEID }}
-     ASSETID: ""
-     ASSETNAME: ""
-     ASSETURL: ""
+     REPO: ${{ github.repository }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
      - run: |
-         echo "RELEASEID: $RELEASEID"
+         $RELEASESURL = "https://api.github.com/repos/$REPO/releases/$RELEASEID"
+         echo "RELEASESURL: $RELEASESURL"
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/vnd.github.v3' `
-                           --location "https://api.github.com/repos/$OWNER/$REPO/releases/$RELEASEID"
+                           --location $RELEASESURL
          $objReleases = $curloutput |ConvertFrom-Json
          $ASSETID = $objReleases.assets[0].id
          $ASSETNAME = $objReleases.assets[0].name
