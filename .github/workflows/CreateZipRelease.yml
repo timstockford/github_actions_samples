@@ -60,9 +60,15 @@ jobs:
         asset_path: ./files.zip
         asset_name: myfiles.zip
         asset_content_type: application/zip
+    - name: ASSETID Debugging Information
     - run: |
         echo "ASSET_ID IS ${{ steps.release_asset.outputs.id }}"
         echo "ASSET_BROWSER_DOWNLOAD_URL IS ${{ steps.release_asset.outputs.browser_download_url }}"
+    - name: Output generated job properties
+    - run: |
+        echo  "RELEASEID: $RELEASEID"
+        echo  "RELEASE_ASSETID: $RELEASE_ASSETID"
+        echo  "RELEASE_ASSETURL: $RELEASE_ASSETURL"
 
  # Job 2
  test:
