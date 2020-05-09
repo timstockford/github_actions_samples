@@ -96,10 +96,13 @@ jobs:
          $objReleases = $curloutput |ConvertFrom-Json
          echo "GH API Releases JSON" 
          echo $objReleases
+         $env:ASSETID = $objReleases.assets[0].id
+         $env:ASSETNAME = $objReleases.assets[0].name
+         $env:ASSETURL = $objReleases.assets[0].url
      - run: |
-         $ASSETID = $objReleases.assets[0].id
-         $ASSETNAME = $objReleases.assets[0].name
-         $ASSETURL = $objReleases.assets[0].url
+         $ASSETID = $env:ASSETID
+         $ASSETNAME = $env:ASSETNAME
+         $ASSETURL = $env:ASSETURL
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
          curl.exe --header "Authorization: token $GITHUB_TOKEN" `
