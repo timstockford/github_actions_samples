@@ -103,8 +103,8 @@ jobs:
          echo "$ASSETURL"
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/octet-stream' `
-                           --location $ASSETURL `
-                           --output $ASSETNAME
+                           --location https://api.github.com/repos/timstockford/github_actions_templates/releases/assets/20571355 `
+                           --output .\myfiles.zip
          echo "asset curl output"
          echo "$CurlOutput" 
      - run: |
