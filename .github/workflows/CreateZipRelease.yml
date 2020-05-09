@@ -81,29 +81,24 @@ jobs:
    steps:
      - run: |
          echo "RELEASEID: $RELEASEID"
-     - name: Get Asset ID from Release
      - run: |
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                        --header 'Accept: application/vnd.github.v3' `
                        --location "https://api.github.com/repos/$OWNER/$REPO/releases/$RELEASEID"
          $objReleases = $curloutput |ConvertFrom-Json
-     - name: Output Asset Info
      - run: |
         $ASSETID = $objReleases.assets[0].id
         $ASSETNAME = $objReleases.assets[0].name
         $ASSETURL = $objReleases.assets[0].url
         echo "$ASSETID : $ASSETNAME"
         echo "$ASSETURL"
-     - name: Download Asset
      - run: |
         curl.exe --header "Authorization: token $TOKEN" `
            --header 'Accept: application/octet-stream' `
            --output $ASSETNAME `
            --location $ASSETURL
-     - name: Test asset expansion
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
-     - name: View extracted contents
      - run: |
          Get-ChildItem -Recurse .\ExpandedZip
 
