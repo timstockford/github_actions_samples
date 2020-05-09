@@ -77,26 +77,26 @@ jobs:
        shell: powershell
    env:
      RELEASEID: ${{ needs.build.outputs.RELEASEID }}
+     ASSETID: ""
+     ASSETNAME: ""
+     ASSETURL: ""
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
      - run: |
          echo "RELEASEID: $RELEASEID"
-     - run: |
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
-                       --header 'Accept: application/vnd.github.v3' `
-                       --location "https://api.github.com/repos/$OWNER/$REPO/releases/$RELEASEID"
+                           --header 'Accept: application/vnd.github.v3' `
+                           --location "https://api.github.com/repos/$OWNER/$REPO/releases/$RELEASEID"
          $objReleases = $curloutput |ConvertFrom-Json
-     - run: |
-        $ASSETID = $objReleases.assets[0].id
-        $ASSETNAME = $objReleases.assets[0].name
-        $ASSETURL = $objReleases.assets[0].url
-        echo "$ASSETID : $ASSETNAME"
-        echo "$ASSETURL"
-     - run: |
-        curl.exe --header "Authorization: token $TOKEN" `
-           --header 'Accept: application/octet-stream' `
-           --output $ASSETNAME `
-           --location $ASSETURL
+         $ASSETID = $objReleases.assets[0].id
+         $ASSETNAME = $objReleases.assets[0].name
+         $ASSETURL = $objReleases.assets[0].url
+         echo "$ASSETID : $ASSETNAME"
+         echo "$ASSETURL"
+         curl.exe --header "Authorization: token $GITHUB_TOKEN" `
+             --header 'Accept: application/octet-stream' `
+             --output $ASSETNAME `
+             --location $ASSETURL
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
      - run: |
