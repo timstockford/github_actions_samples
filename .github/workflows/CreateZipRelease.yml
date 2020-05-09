@@ -101,13 +101,16 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
+         echo "::set-env name=ASSETURL::$ASSETURL"
      - run: | 
+         echo "URL = $env:ASSETURL"
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/octet-stream' `
                            --location https://api.github.com/repos/timstockford/github_actions_templates/releases/assets/20571355 `
                            --output .\myfiles.zip
          echo "asset curl output"
-         echo "$CurlOutput" 
+         echo "$CurlOutput"
+         type .\myFiles.zip
      - run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
      - run: |
