@@ -79,7 +79,6 @@ jobs:
      RELEASEID: ${{ needs.build.outputs.RELEASEID }}
      REPO: ${{ github.repository }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     ASSETURL: ${{ steps.get_asseturl.outputs.ASSETURL }}
    steps:
      - run: |
          $RELEASEID = $env:RELEASEID
