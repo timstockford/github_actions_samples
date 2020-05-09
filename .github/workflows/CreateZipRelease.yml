@@ -101,6 +101,7 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
+     - run: | 
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/octet-stream' `
                            --location https://api.github.com/repos/timstockford/github_actions_templates/releases/assets/20571355 `
