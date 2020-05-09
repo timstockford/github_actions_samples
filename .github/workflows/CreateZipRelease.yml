@@ -79,8 +79,10 @@ jobs:
      RELEASEID: ${{ needs.build.outputs.RELEASEID }}
      REPO: ${{ github.repository }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     ASSETURL: ${{ steps.get_asseturl.outputs.ASSETURL }}
    steps:
-     - run: |
+     - id: get_asseturl
+       run: |
          $RELEASEID = $env:RELEASEID
          $REPO = $env:REPO
          $GITHUB_TOKEN = $env:GITHUB_TOKEN
@@ -101,6 +103,11 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
+         echo "::set-output name=ASSETURL::$ASSETURL"
+         
+     - id: get_releaseasset
+       run: |
+         echo "AssetURL: $env:ASSETURL"
          curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                   --header 'Accept: application/octet-stream' `
                   --output $ASSETNAME `
