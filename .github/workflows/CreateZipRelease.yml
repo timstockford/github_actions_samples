@@ -79,6 +79,8 @@ jobs:
      RELEASEID: ${{ needs.build.outputs.RELEASEID }}
      REPO: ${{ github.repository }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   outputs:
+     RELEASEID2: ${{ needs.build.outputs.RELEASEID }}
    steps:
      - name: Get Release Asset ID
        run: |
@@ -102,7 +104,6 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
-         echo "::set-env name=ASSETURL::$ASSETURL"
      - name: Download Release Asset
        run: | 
          echo "URL = $env:ASSETURL"
@@ -132,4 +133,5 @@ jobs:
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        with:
-         release_id: ${{ needs.build.outputs.RELEASEID }}
+         release_id: ${{ needs.test.outputs.RELEASEID2 }}
+
