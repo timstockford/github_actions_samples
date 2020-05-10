@@ -5,7 +5,7 @@ IF "%1"=="" (
 )
 
 git pull --tags origin master
-echo %TAGTEXT = %DATE%-%TIME% >>./files/file.txt
+echo %TAGTEXT %DATE%-%TIME% >>./files/file.txt
 git add ./files/file.txt
 git tag "%TAGTEXT%"
 git commit -m "Action Trigger %TAGTEXT% %DATE%-%TIME%"
