@@ -31,7 +31,8 @@ When files are updated in a particular repo folder, automatically zip the folder
 
 **use case:**
 Azure Image Builder to download an (automatically maintained) package of scripts during customisation phase.
-note: in reality will use a Azure DevOps pipeline step to deliver the script artifacts from the repo.
+
+*note: in reality will use a Azure DevOps pipeline step to deliver the script artifacts from the repo.*
 
 
 ### Planned Features:
