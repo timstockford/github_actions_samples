@@ -104,9 +104,11 @@ jobs:
          $ASSETURL = $objReleases.assets[0].url
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
+         echo "::set-env name=ASSETURL::$ASSETURL"
      - name: Download Release Asset
        run: | 
-         echo "URL = $env:ASSETURL"
+         $ASSETID = $env:ASSETURL
+         echo "URL = $ASSETID"
          $GITHUB_TOKEN = $env:GITHUB_TOKEN
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
                            --header 'Accept: application/octet-stream' `
@@ -128,6 +130,7 @@ jobs:
    runs-on: ubuntu-latest
    name: publish new release
    steps:
+     - run: echo $release_id
      - name: change release status
        uses: eregon/publish-release@v1
        env:
