@@ -18,6 +18,7 @@ Templates and samples yml located in repo root
 ---
 
 ## Zip & publish
+![Create zip release](https://github.com/timstockford/github_actions_templates/workflows/Create%20zip%20release/badge.svg)
 [CreateZipRelease.yml](.github/workflows/CreateZipRelease.yml) - Complete CI workflow to publish new ZIP file when a modification is made to ./files.
 
 Latest generated .zip file is available from: [https://github.com/timstockford/github_actions_templates/releases/latest/download/myfiles.zip](https://github.com/timstockford/github_actions_templates/releases/latest/download/myfiles.zip)
