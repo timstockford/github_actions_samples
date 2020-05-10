@@ -123,6 +123,9 @@ jobs:
      - name: List Archive Files
        run: |
          Get-ChildItem -Recurse .\ExpandedZip
+     - name: View files.txt
+       run: |
+         type .\ExpandedZip\files\file.txt
 
 # Job 3
  release:
