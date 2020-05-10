@@ -80,7 +80,8 @@ jobs:
      REPO: ${{ github.repository }}
      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    steps:
-     - run: |
+     - name: Get Release Asset ID
+       run: |
          $RELEASEID = $env:RELEASEID
          $REPO = $env:REPO
          $GITHUB_TOKEN = $env:GITHUB_TOKEN
@@ -102,7 +103,8 @@ jobs:
          echo "$ASSETID : $ASSETNAME"
          echo "$ASSETURL"
          echo "::set-env name=ASSETURL::$ASSETURL"
-     - run: | 
+     - name: Download Release Asset
+       run: | 
          echo "URL = $env:ASSETURL"
          $GITHUB_TOKEN = $env:GITHUB_TOKEN
          $CurlOutput = curl.exe --header "Authorization: token $GITHUB_TOKEN" `
@@ -112,9 +114,11 @@ jobs:
          echo "asset curl output"
          echo "$CurlOutput"
          type .\myFiles.zip
-     - run: |
+     - name: Extract Zip file
+       run: |
          Expand-Archive -Path .\myFiles.zip -DestinationPath .\ExpandedZip
-     - run: |
+     - name: List Archive Files
+       run: |
          Get-ChildItem -Recurse .\ExpandedZip
 
 # Job 3
